@@ -40,8 +40,7 @@ class _UploadSlipPagePageState extends State<UploadSlipPagePage> {
   final _formKey = GlobalKey<FormState>();
   double? amountPay;
   String? promptPayID;
-  MobileAppPaymentResponse _mobileAppPaymentResponse =
-      MobileAppPaymentResponse();
+  MobileAppPaymentResponse _mobileAppPaymentResponse = MobileAppPaymentResponse();
 
   dynamic _imageFile;
 
@@ -132,50 +131,30 @@ class _UploadSlipPagePageState extends State<UploadSlipPagePage> {
               child: Column(
                 children: [
                   SizedBox(height: 30),
-                  Container(
-                    //margin: const EdgeInsets.all(40.0),
-                    width: MediaQuery.of(context).size.width * 0.5,
-                    height: MediaQuery.of(context).size.width * 0.5,
-                    decoration: BoxDecoration(
-                        image: DecorationImage(
-                            image: new AssetImage(_setImage()))),
+                  Screenshot(
+                    controller: controller,
+                    child: Container(
+                      //margin: const EdgeInsets.all(40.0),
+                      width: MediaQuery.of(context).size.width * 0.5,
+                      height: MediaQuery.of(context).size.width * 0.5,
+                      decoration: BoxDecoration(image: DecorationImage(image: new AssetImage(_setImage()))),
+                    ),
                   ),
                   SizedBox(height: 10),
-                  Container(
-                    padding: EdgeInsets.only(left: 10, right: 10),
-                    child: Center(
-                      child: Container(
-                        width: MediaQuery.of(context).size.width * 0.8,
-                        decoration: BoxDecoration(
-                          gradient: LinearGradient(
-                            colors: [
-                              AppConstant.PRIMARY_COLOR,
-                              AppConstant.SECONDARY_COLOR,
-                            ],
-                          ),
-                          borderRadius: BorderRadius.all(Radius.circular(25)),
-                        ),
-                        child: ElevatedButton(
-                          style: ButtonStyle(
-                              backgroundColor: WidgetStateProperty.all(
-                            Color(0xFFe8aa24),
-                          )),
-                          onPressed: () async {
-                            final image = await controller.capture();
-                            if (image == null) {
-                              print('Image capture failed.');
-                            } else {
-                              await SaveImagePromptpay.saveImage(
-                                  image, context);
-                            }
-                          },
-                          child: Text("บันทึก QR Code",
-                              style:
-                                  TextStyle(color: Colors.white, fontSize: 20)),
-                        ),
-                        //padding: EdgeInsets.all(16.0),
-                      ),
-                    ),
+                  ElevatedButton(
+                    style: ButtonStyle(
+                        backgroundColor: WidgetStateProperty.all(
+                      Color(0xFFe8aa24),
+                    )),
+                    onPressed: () async {
+                      final image = await controller.capture(delay: Duration(milliseconds: 10));
+                      if (image == null) {
+                        print('Image capture failed.');
+                      } else {
+                        await SaveImagePromptpay.saveImage(image, context);
+                      }
+                    },
+                    child: Text("บันทึก QR Code", style: TextStyle(color: Colors.white, fontSize: 20)),
                   ),
                   SizedBox(height: 10),
                   Container(
@@ -185,8 +164,7 @@ class _UploadSlipPagePageState extends State<UploadSlipPagePage> {
                         width: MediaQuery.of(context).size.width * 0.8,
                         child: TextFormField(
                           onSaved: (price) {
-                            _mobileAppPaymentResponse.price =
-                                double.parse(price!);
+                            _mobileAppPaymentResponse.price = double.parse(price!);
                           },
                           onChanged: (value) {
                             if (value.isEmpty) {
@@ -199,8 +177,7 @@ class _UploadSlipPagePageState extends State<UploadSlipPagePage> {
                               });
                             }
                           },
-                          validator: RequiredValidator(
-                              errorText: "กรุณาใส่จำนวนเงินที่โอน"),
+                          validator: RequiredValidator(errorText: "กรุณาใส่จำนวนเงินที่โอน"),
                           style: TextStyle(
                             fontSize: 30,
                             color: AppConstant.PRIMARY_COLOR,
@@ -230,8 +207,7 @@ class _UploadSlipPagePageState extends State<UploadSlipPagePage> {
                                   ),
                                 ),
                               ),
-                              Text("เลือกรูป หรือ ถ่ายรูป สลิป",
-                                  style: TextStyle(color: Colors.red))
+                              Text("เลือกรูป หรือ ถ่ายรูป สลิป", style: TextStyle(color: Colors.red))
                             ],
                           )
                         : Container(
@@ -265,8 +241,7 @@ class _UploadSlipPagePageState extends State<UploadSlipPagePage> {
                         ),
                         child: TextButton(
                           style: ButtonStyle(
-                            foregroundColor:
-                                MaterialStateProperty.all<Color>(Colors.white),
+                            foregroundColor: MaterialStateProperty.all<Color>(Colors.white),
                           ),
                           child: Text(
                             'เลือกรูปสลิป',
@@ -304,8 +279,7 @@ class _UploadSlipPagePageState extends State<UploadSlipPagePage> {
                         ),
                         child: TextButton(
                           style: ButtonStyle(
-                            foregroundColor: MaterialStateProperty.all<Color>(
-                                Color(0xFFf7c664)),
+                            foregroundColor: MaterialStateProperty.all<Color>(Color(0xFFf7c664)),
                           ),
                           child: Text(
                             'ถ่ายรูปสลิป',
@@ -343,20 +317,15 @@ class _UploadSlipPagePageState extends State<UploadSlipPagePage> {
                         ),
                         child: TextButton(
                           style: ButtonStyle(
-                            foregroundColor: MaterialStateProperty.all<Color>(
-                                Color(0xFFf7c664)),
+                            foregroundColor: MaterialStateProperty.all<Color>(Color(0xFFf7c664)),
                           ),
                           child: Text(
                             "วันที่โอน ${AppFormatters.formatDate.format(AppVariables.SelectDate)}",
-                            style: TextStyle(
-                                color: Color(0xFFFFFFFF),
-                                fontSize: 20.0,
-                                fontWeight: FontWeight.bold),
+                            style: TextStyle(color: Color(0xFFFFFFFF), fontSize: 20.0, fontWeight: FontWeight.bold),
                           ),
                           // ignore: missing_return
                           onPressed: () async {
-                            DateTime? selectedDate =
-                                await selectDate(context, DateTime.now());
+                            DateTime? selectedDate = await selectDate(context, DateTime.now());
                             if (selectedDate != null) {
                               setState(() {
                                 print("Selected date: $selectedDate");
@@ -379,8 +348,7 @@ class _UploadSlipPagePageState extends State<UploadSlipPagePage> {
                           onSaved: (timeTran) {
                             _mobileAppPaymentResponse.timeTran = timeTran;
                           },
-                          validator:
-                              RequiredValidator(errorText: "กรุณาใส่เวลาโอน"),
+                          validator: RequiredValidator(errorText: "กรุณาใส่เวลาโอน"),
                           style: TextStyle(
                             fontSize: 24,
                             color: AppConstant.PRIMARY_COLOR,
@@ -405,8 +373,7 @@ class _UploadSlipPagePageState extends State<UploadSlipPagePage> {
                           onSaved: (remark) {
                             _mobileAppPaymentResponse.remark = remark;
                           },
-                          style: TextStyle(
-                              fontSize: 24, color: AppConstant.PRIMARY_COLOR),
+                          style: TextStyle(fontSize: 24, color: AppConstant.PRIMARY_COLOR),
                           keyboardType: TextInputType.text,
                           autofocus: true,
                           decoration: InputDecoration(
@@ -435,15 +402,11 @@ class _UploadSlipPagePageState extends State<UploadSlipPagePage> {
                         ),
                         child: TextButton(
                           style: ButtonStyle(
-                            foregroundColor: MaterialStateProperty.all<Color>(
-                                Color(0xFFf7c664)),
+                            foregroundColor: MaterialStateProperty.all<Color>(Color(0xFFf7c664)),
                           ),
                           child: Text(
                             "บันทึก",
-                            style: TextStyle(
-                                color: Color(0xFFFFFFFF),
-                                fontSize: 20.0,
-                                fontWeight: FontWeight.bold),
+                            style: TextStyle(color: Color(0xFFFFFFFF), fontSize: 20.0, fontWeight: FontWeight.bold),
                           ),
                           // ignore: missing_return
                           onPressed: () async {
@@ -483,9 +446,8 @@ class _UploadSlipPagePageState extends State<UploadSlipPagePage> {
                                         "${widget.savingId}_${AppFormatters.formatDateAll.format(DateTime.now())}";
                                     Reference storageRef = _storage
                                         .ref()
-                                        .child(AppFormatters.formatDateYYYY
-                                            .format(DateTime.now()))
-                                        .child("kanjanapisek")
+                                        .child(AppFormatters.formatDateYYYY.format(DateTime.now()))
+                                        .child("kanjanapisek_app")
                                         .child(fileName);
 
                                     UploadTask uploadTask;
@@ -494,30 +456,23 @@ class _UploadSlipPagePageState extends State<UploadSlipPagePage> {
                                     if (kIsWeb) {
                                       uploadTask = storageRef.putData(
                                         _imageFile!,
-                                        SettableMetadata(
-                                            contentType: 'image/jpeg'),
+                                        SettableMetadata(contentType: 'image/jpeg'),
                                       );
                                     } else {
-                                      uploadTask = storageRef.putFile(
-                                          _imageFile!); // ใช้ File สำหรับ Android/iOS
+                                      uploadTask = storageRef.putFile(_imageFile!); // ใช้ File สำหรับ Android/iOS
                                     }
 
-                                    uploadTask.snapshotEvents.listen(
-                                        (TaskSnapshot snapshot) {
-                                      print(
-                                          'Progress: ${(snapshot.bytesTransferred / snapshot.totalBytes) * 100} %');
+                                    uploadTask.snapshotEvents.listen((TaskSnapshot snapshot) {
+                                      print('Progress: ${(snapshot.bytesTransferred / snapshot.totalBytes) * 100} %');
                                     }, onError: (e) {
                                       print('Error during upload: $e');
                                     });
 
-                                    TaskSnapshot taskSnapshot =
-                                        await uploadTask;
+                                    TaskSnapshot taskSnapshot = await uploadTask;
                                     print("Upload completed");
 
-                                    if (taskSnapshot.state ==
-                                        TaskState.success) {
-                                      String downloadURL =
-                                          await storageRef.getDownloadURL();
+                                    if (taskSnapshot.state == TaskState.success) {
+                                      String downloadURL = await storageRef.getDownloadURL();
                                       print("Download URL: $downloadURL");
 
                                       Map<String, String> headers = {
@@ -528,41 +483,30 @@ class _UploadSlipPagePageState extends State<UploadSlipPagePage> {
                                       };
 
                                       var requestBody = jsonEncode({
-                                        "branchName": AppVariables
-                                            .MobileAppPaymentBranchName,
-                                        "type":
-                                            AppVariables.MobileAppPaymentType,
+                                        "branchName": AppVariables.MobileAppPaymentBranchName,
+                                        "type": AppVariables.MobileAppPaymentType,
                                         "status": "รออนุมัติ",
-                                        "custId":
-                                            AppVariables.MobileAppPaymentCustId,
+                                        "custId": AppVariables.MobileAppPaymentCustId,
                                         "custName": AppVariables.CUSTNAME,
-                                        "billId":
-                                            AppVariables.MobileAppPaymentBillId,
+                                        "billId": AppVariables.MobileAppPaymentBillId,
                                         "picLink": downloadURL,
-                                        "price": _mobileAppPaymentResponse.price
-                                            .toString(),
+                                        "price": _mobileAppPaymentResponse.price.toString(),
                                         "tranBank": "",
                                         "tranBankAccNo": "",
-                                        "dateTran": AppFormatters
-                                            .formatDateToDatabase
-                                            .format(selectedDate!),
-                                        "timeTran":
-                                            _mobileAppPaymentResponse.timeTran
+                                        "dateTran": AppFormatters.formatDateToDatabase.format(selectedDate!),
+                                        "timeTran": _mobileAppPaymentResponse.timeTran
                                       });
 
                                       final response = await http.post(
-                                        Uri.parse(
-                                            "${AppVariables.API}/AddMobileAppPayment"),
+                                        Uri.parse("${AppVariables.API}/AddMobileAppPayment"),
                                         headers: headers,
                                         body: requestBody,
                                       );
 
                                       statusCode = response.statusCode;
-                                      print(
-                                          "statuscode ${statusCode.toString()}");
+                                      print("statuscode ${statusCode.toString()}");
 
-                                      Navigator.pop(
-                                          context); //ปิด dialog กำลังบันทึกข้อมูล
+                                      Navigator.pop(context); //ปิด dialog กำลังบันทึกข้อมูล
 
                                       if (statusCode == 204) {
                                         showDialogUploadComplete(context);
@@ -572,10 +516,8 @@ class _UploadSlipPagePageState extends State<UploadSlipPagePage> {
                                           "content-type": "application/json",
                                           'serverId': AppVariables.ServerId,
                                           'customerId': AppVariables.CustomerId,
-                                          'onesignalappid':
-                                              AppConstant.OneSignalAppId,
-                                          'onesignalrestkey':
-                                              AppConstant.OneSignalRestkey
+                                          'onesignalappid': AppConstant.OneSignalAppId,
+                                          'onesignalrestkey': AppConstant.OneSignalRestkey
                                         };
 
                                         final responseSendnoti = await http.put(
@@ -594,8 +536,7 @@ class _UploadSlipPagePageState extends State<UploadSlipPagePage> {
                                         });
                                       } else {
                                         showDialogNotUpload(context);
-                                        print(
-                                            "Failed AddMobileAppPayment data api ${statusCode}");
+                                        print("Failed AddMobileAppPayment data api ${statusCode}");
                                       }
                                     }
                                   } catch (_) {
@@ -714,13 +655,7 @@ class _UploadSlipPagePageState extends State<UploadSlipPagePage> {
       builder: (BuildContext dialogContext) {
         return AlertDialog(
           title: Text(
-            "❗️ไม่สามารถคัดลอกเลขที่บัญชีได้" +
-                "\n" +
-                "\n" +
-                "เนื่องจากยังไม่ได้กรอกจำนวนเงิน" +
-                "\n" +
-                "\n" +
-                "",
+            "❗️ไม่สามารถคัดลอกเลขที่บัญชีได้" + "\n" + "\n" + "เนื่องจากยังไม่ได้กรอกจำนวนเงิน" + "\n" + "\n" + "",
             style: TextStyle(color: Colors.red),
           ),
           actions: <Widget>[
@@ -752,13 +687,7 @@ class _UploadSlipPagePageState extends State<UploadSlipPagePage> {
       builder: (BuildContext dialogContext) {
         return AlertDialog(
           title: Text(
-            "❗️ไม่สามารถคัดลอกเลขที่บัญชีได้" +
-                "\n" +
-                "\n" +
-                "เนื่องจากยอดเงินน้อยกว่า 0 บาท" +
-                "\n" +
-                "\n" +
-                "",
+            "❗️ไม่สามารถคัดลอกเลขที่บัญชีได้" + "\n" + "\n" + "เนื่องจากยอดเงินน้อยกว่า 0 บาท" + "\n" + "\n" + "",
             style: TextStyle(color: Colors.red),
           ),
           actions: <Widget>[
@@ -790,13 +719,7 @@ class _UploadSlipPagePageState extends State<UploadSlipPagePage> {
       builder: (BuildContext dialogContext) {
         return AlertDialog(
           title: Text(
-            "❗️ไม่สามารถบันทึกได้" +
-                "\n" +
-                "\n" +
-                "เนื่องจากยังไม่ระบุยอดเงิน" +
-                "\n" +
-                "\n" +
-                "",
+            "❗️ไม่สามารถบันทึกได้" + "\n" + "\n" + "เนื่องจากยังไม่ระบุยอดเงิน" + "\n" + "\n" + "",
             style: TextStyle(color: Colors.red),
           ),
           actions: <Widget>[
@@ -828,13 +751,7 @@ class _UploadSlipPagePageState extends State<UploadSlipPagePage> {
       builder: (BuildContext dialogContext) {
         return AlertDialog(
           title: Text(
-            "❗️ไม่สามารถบันทึกได้" +
-                "\n" +
-                "\n" +
-                "เนื่องจากยอดเงินน้อยกว่า 0 บาท" +
-                "\n" +
-                "\n" +
-                "",
+            "❗️ไม่สามารถบันทึกได้" + "\n" + "\n" + "เนื่องจากยอดเงินน้อยกว่า 0 บาท" + "\n" + "\n" + "",
             style: TextStyle(color: Colors.red),
           ),
           actions: <Widget>[
@@ -875,18 +792,14 @@ class _UploadSlipPagePageState extends State<UploadSlipPagePage> {
               children: [
                 Text(
                   "กรุณารออัพเดทจากทางร้าน ภายใน 24 ชั่วโมง",
-                  style: TextStyle(
-                      fontSize: 15,
-                      height: 1.2,
-                      color: AppConstant.FONT_COLOR_MENU),
+                  style: TextStyle(fontSize: 15, height: 1.2, color: AppConstant.FONT_COLOR_MENU),
                 ),
                 SizedBox(
                   height: 5,
                 ),
                 Text(
                   "❗️กรุณาอย่าแจ้งซ้ำ❗️ จะทำให้การอนุมัติล่าช้าได้ค่ะ",
-                  style:
-                      TextStyle(fontSize: 15, height: 1.2, color: Colors.red),
+                  style: TextStyle(fontSize: 15, height: 1.2, color: Colors.red),
                 ),
               ],
             ),

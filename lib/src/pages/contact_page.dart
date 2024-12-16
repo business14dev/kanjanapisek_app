@@ -9,15 +9,15 @@ class ContactPage extends StatelessWidget {
       'numbers': '043322904',
     },
     {
-      'name': 'สสาขา หน้าเมือง2 - เยื้องแฟรี่พลาซ่า',
+      'name': 'สาขา หน้าเมือง2 - เยื้องแฟรี่พลาซ่า',
      'numbers': '043322914',
     },
     {
-      'name': ' สาขา หนองเรือ',
+      'name': 'สาขา หนองเรือ',
       'numbers': '043294345',
     },
     {
-      'name': '  สาขา ดอนโมง',
+      'name': 'สาขา ดอนโมง',
       'numbers': '043299599',
     },
     
@@ -30,44 +30,6 @@ class ContactPage extends StatelessWidget {
     } else {
       print('Cannot make a phone call to $phoneNumber');
     }
-  }
-
-  void _showPhoneNumbersDialog(BuildContext context, String branchName, List<String> numbers) {
-    showDialog(
-      context: context,
-      builder: (BuildContext context) {
-        return AlertDialog(
-          title: Text(
-            'เบอร์โทร $branchName',
-            style: TextStyle(
-              fontSize: 18, // ขนาดข้อความ
-              color: Colors.blue, // สีข้อความ
-              fontWeight: FontWeight.w500, // น้ำหนักข้อความ
-            ),
-          ),
-          content: Column(
-            mainAxisSize: MainAxisSize.min,
-            children: numbers.map((number) {
-              return ListTile(
-                leading: Icon(Icons.phone, color: Colors.blue),
-                title: Text(
-                  number,
-                  style: TextStyle(
-                    fontSize: 18, // ขนาดข้อความ
-                    color: Colors.blue, // สีข้อความ
-                    fontWeight: FontWeight.w500, // น้ำหนักข้อความ
-                  ),
-                ),
-                onTap: () {
-                  Navigator.of(context).pop(); // ปิด Dialog
-                  _makePhoneCall(number);
-                },
-              );
-            }).toList(),
-          ),
-        );
-      },
-    );
   }
 
   @override
@@ -117,7 +79,7 @@ class ContactPage extends StatelessWidget {
                           children: <Widget>[
                             Icon(
                               Icons.phone,
-                              color: AppConstant.FONT_COLOR_MENU,
+                              color: AppConstant.PRIMARY_COLOR,
                               size: 20,
                             ),
                             SizedBox(width: 10),
@@ -129,20 +91,20 @@ class ContactPage extends StatelessWidget {
                                     branch['name'],
                                     style: TextStyle(
                                       fontSize: 18,
-                                      color: AppConstant.FONT_COLOR_MENU,
+                                      color: AppConstant.PRIMARY_COLOR,
                                     ),
                                   ),
                                     Text(
                                     branch['numbers'],
                                     style: TextStyle(
                                       fontSize: 18,
-                                      color: AppConstant.FONT_COLOR_MENU,
+                                      color: AppConstant.PRIMARY_COLOR,
                                     ),
                                   ),
                                 ],
                               ),
                             ),
-                            Icon(Icons.arrow_forward_ios, size: 16, color: AppConstant.FONT_COLOR_MENU),
+                            Icon(Icons.arrow_forward_ios, size: 16, color: AppConstant.PRIMARY_COLOR),
                           ],
                         ),
                       ),

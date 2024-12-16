@@ -57,13 +57,13 @@ class AppConstant {
 
   // static Color PRIMARY_COLOR = Colors.blueGrey[600];
   // static Color SECONDARY_COLOR = Colors.blueGrey[200];
-  static final Color PRIMARY_COLOR = Color(0xFFF99000);
-  static final Color SECONDARY_COLOR = Color(0xFFF99000);
+  static final Color PRIMARY_COLOR = Color(0xFF990000);
+  static final Color SECONDARY_COLOR = Color(0xFF990000);
   static final Color FONTHEAD_COLOR = Color(0xFFb60521);
   static final Color FONT_COLOR = Colors.white;
 
   // static Color FONT_COLOR_MENU = Colors.blueGrey[600];
-  static final Color FONT_COLOR_MENU = Color(0xFFF99000);
+  static final Color FONT_COLOR_MENU = Color(0xFF99000);
   static final Color FONT_COLOR_PAGE = Color(0xFFFFFFFF);
 
   static final GlobalKey<ScaffoldState> scaffoldKey =

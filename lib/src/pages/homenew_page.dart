@@ -80,11 +80,6 @@ class _HomeNewState extends State<HomeNew> {
   void initState() {
     super.initState();
     _loadSavedImage();
-
-    AppService().promotionBannerP1();
-    AppService().newProductP1();
-    AppService().savingMtList();
-    AppService().pawnMtList();
     AppService().mobileAppNotiSent();
   }
 
@@ -447,7 +442,7 @@ class _HomeNewState extends State<HomeNew> {
   Widget goldPrice(BuildContext context) {
     return Container(
       width: MediaQuery.of(context).size.width * 1,
-      height: MediaQuery.of(context).size.width * 0.35,
+      height: 150,
       child: FutureBuilder(
           future: fetchGoldPrice(),
           builder: (context, snapshot) {
@@ -471,14 +466,14 @@ class _HomeNewState extends State<HomeNew> {
                               15,
                             ))),
                         width: MediaQuery.of(context).size.width * 1,
-                        height: MediaQuery.of(context).size.width * 0.1,
+                        height: 30,
                         child: Row(
                           mainAxisAlignment: MainAxisAlignment.center,
                           children: [
                             Text(
                               "ราคาทองคำแท่งวันที่ ${AppVariables.GoldPriceText}",
                               style: TextStyle(
-                                  fontSize: 18,
+                                  fontSize: 16,
                                   color: Colors.white,
                                   fontWeight: FontWeight.bold
                                   //color: Colors.blueGrey,
@@ -506,7 +501,7 @@ class _HomeNewState extends State<HomeNew> {
                           color: Color(0xFFf0e19b),
                           borderRadius: BorderRadius.all(Radius.circular(15)),
                         ),
-                        width: MediaQuery.of(context).size.width * 0.81,
+                        width: MediaQuery.of(context).size.width * 0.82,
                         height: 80,
                         child: Row(
                           children: [
@@ -578,7 +573,7 @@ class _HomeNewState extends State<HomeNew> {
                                     topRight: Radius.circular(15),
                                     bottomRight: Radius.circular(15)),
                               ),
-                              width: MediaQuery.of(context).size.width * 0.534,
+                              width: MediaQuery.of(context).size.width * 0.536,
                               height: 80,
                               child: Column(
                                 crossAxisAlignment: CrossAxisAlignment.start,

@@ -35,7 +35,7 @@ class _SavingPage extends State<SavingPage> {
           return Container(
             decoration: BoxDecoration(
               image: DecorationImage(
-                image: AssetImage("assets/images/bg-setting3.png"),
+                image: AssetImage("assets/images/bg-home2.png"),
                 fit: BoxFit.cover,
               ),
             ),
@@ -78,7 +78,7 @@ class _SavingPage extends State<SavingPage> {
                 Container(
                   color: Colors.grey.shade300,
                   width: MediaQuery.of(context).size.width * 1,
-                  height: MediaQuery.of(context).size.width * 0.17,
+                  height: 55,
                   child: Column(
                     mainAxisAlignment: MainAxisAlignment.end,
                     crossAxisAlignment: CrossAxisAlignment.start,
@@ -103,7 +103,7 @@ class _SavingPage extends State<SavingPage> {
                       child: Container(
                         color: Colors.grey.shade100,
                         width: MediaQuery.of(context).size.width * 1,
-                        height: MediaQuery.of(context).size.width * 0.19,
+                        height: 80,
                         child: Column(
                           children: [
                             SizedBox(height: 10),
@@ -158,7 +158,7 @@ class _SavingPage extends State<SavingPage> {
     return Container(
       color: Colors.grey.shade100,
       width: MediaQuery.of(context).size.width * 1,
-      height: MediaQuery.of(context).size.width * 0.35,
+      height: 160,
       child: Column(
         mainAxisAlignment: MainAxisAlignment.spaceBetween,
         crossAxisAlignment: CrossAxisAlignment.start,
@@ -213,13 +213,13 @@ class _SavingPage extends State<SavingPage> {
     return Container(
       color: Colors.grey.shade300,
       width: MediaQuery.of(context).size.width * 1,
-      height: MediaQuery.of(context).size.width * 0.42,
+      height: 180,
       child: Column(
         mainAxisAlignment: MainAxisAlignment.center,
         children: [
           Container(
             width: MediaQuery.of(context).size.width * 0.7,
-            height: MediaQuery.of(context).size.width * 0.36,
+            height: 145,
             decoration: BoxDecoration(
               color: Colors.grey.shade100,
               border: Border.all(color: Colors.grey),

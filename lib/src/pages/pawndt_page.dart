@@ -83,7 +83,7 @@ class _PawnDtPageState extends State<PawnDtPage> {
           return Container(
             decoration: BoxDecoration(
               image: DecorationImage(
-                image: AssetImage("assets/images/bg-setting3.png"),
+                image: AssetImage("assets/images/bg-home2.png"),
                 fit: BoxFit.cover,
               ),
             ),

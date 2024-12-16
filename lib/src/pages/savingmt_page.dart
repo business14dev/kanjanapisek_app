@@ -99,20 +99,7 @@ class _SavingmtPageState extends State<SavingmtPage> {
                     child: Column(
                       children: [
                         SizedBox(height: 10),
-                         SizedBox(
-                            // height: 15,
-                             
-                              width: MediaQuery.of(context).size.width,
-                              child: Column(
-                                crossAxisAlignment: CrossAxisAlignment.end,
-                                mainAxisAlignment: MainAxisAlignment.end,
-                             
-                                
-                                 children: [
-                                ..._buildLogInOut(context),
-                                 ]
-                              ),
-                            ),
+                        
                         Row(
                           crossAxisAlignment: CrossAxisAlignment.center,
                           children: [
@@ -130,12 +117,11 @@ class _SavingmtPageState extends State<SavingmtPage> {
                             ),
                             SizedBox(
                               height: 80,
-                              width: MediaQuery.of(context).size.width*0.7,
+                              width: MediaQuery.of(context).size.width * 0.6,
                               child: Column(
                                 crossAxisAlignment: CrossAxisAlignment.start,
                                 mainAxisAlignment: MainAxisAlignment.center,
                                 children: [
-                                 
                                   SizedBox(height: 10),
                                   AppVariables.CUSTID == "-"
                                       ? Row(
@@ -156,14 +142,14 @@ class _SavingmtPageState extends State<SavingmtPage> {
                                               ' สวัสดี ',
                                               style: TextStyle(
                                                   color: Colors.white,
-                                                  fontSize: 22,
+                                                  fontSize: 18,
                                                   fontWeight: FontWeight.bold),
                                             ),
                                             Text(
                                               AppVariables.CUSTNAME,
                                               style: TextStyle(
                                                   color: Color(0xFFfefca7),
-                                                  fontSize: 22,
+                                                  fontSize: 18,
                                                   fontWeight: FontWeight.bold),
                                               textScaler: TextScaler.linear(1),
                                             ),
@@ -181,7 +167,7 @@ class _SavingmtPageState extends State<SavingmtPage> {
                       ],
                     ),
                   ),
-                  toolbarHeight: 120,
+                  toolbarHeight: 90,
                 ),
                 body: ListView(
                   children: [
@@ -273,11 +259,11 @@ class _SavingmtPageState extends State<SavingmtPage> {
                 ),
                 SizedBox(height: 10),
                 SizedBox(
-                  height: 250,
+                  // height: 230,
                   child: Column(
                     children: [
                       SizedBox(
-                        height: 240,
+                        height: 190,
                         child: GetBuilder<AppController>(builder: (controller) {
                           // ฟังการเลื่อน
                           controller.saivngScrollController.addListener(() {
@@ -324,16 +310,14 @@ class _SavingmtPageState extends State<SavingmtPage> {
                                       ),
                                       borderRadius: BorderRadius.circular(20)),
                                   child: Column(
-                                    mainAxisAlignment: MainAxisAlignment.start,
+                                    mainAxisAlignment: MainAxisAlignment.center,
                                     children: [
                                       SizedBox(height: 10),
                                       Container(
-                                        height: 200,
                                         child: Row(
                                           mainAxisAlignment:
                                               MainAxisAlignment.start,
                                           children: <Widget>[
-                                            SizedBox(width: 10),
                                             _buildTitelSaving(),
                                             _buildDetailSaving(
                                                 appController,
@@ -396,7 +380,7 @@ class _SavingmtPageState extends State<SavingmtPage> {
             style: TextStyle(
                 fontWeight: FontWeight.bold,
                 color: Colors.white,
-                fontSize: 20),
+                fontSize: 17),
             textScaler: TextScaler.linear(1),
           ),
             SizedBox(height: 10),
@@ -405,7 +389,7 @@ class _SavingmtPageState extends State<SavingmtPage> {
             style: TextStyle(
                 fontWeight: FontWeight.bold,
                 color: Colors.white,
-                fontSize: 20),
+                fontSize: 17),
             textScaler: TextScaler.linear(1),
           ),
             SizedBox(height: 10),
@@ -414,7 +398,7 @@ class _SavingmtPageState extends State<SavingmtPage> {
             style: TextStyle(
                 fontWeight: FontWeight.bold,
                 color: Colors.white,
-                fontSize: 20),
+                fontSize: 17),
             textScaler: TextScaler.linear(1),
           ),
           SizedBox(height: 10),
@@ -423,7 +407,7 @@ class _SavingmtPageState extends State<SavingmtPage> {
             style: TextStyle(
                 fontWeight: FontWeight.bold,
                 color: Colors.white,
-                fontSize: 20),
+                fontSize: 17),
             textScaler: TextScaler.linear(1),
           ),
          
@@ -449,7 +433,7 @@ class _SavingmtPageState extends State<SavingmtPage> {
             style: TextStyle(
                 fontWeight: FontWeight.bold,
                 color: Colors.white,
-                fontSize: 20),
+                fontSize: 17),
             textScaler: TextScaler.linear(1),
           ),
           SizedBox(height: 10),
@@ -458,7 +442,7 @@ class _SavingmtPageState extends State<SavingmtPage> {
             style: TextStyle(
                 fontWeight: FontWeight.bold,
                 color: Colors.white,
-                fontSize: 20),
+                fontSize: 17),
             textScaler: TextScaler.linear(1),
           ),
            SizedBox(height: 10),
@@ -467,7 +451,7 @@ class _SavingmtPageState extends State<SavingmtPage> {
             style: TextStyle(
                 fontWeight: FontWeight.bold,
                 color: Colors.white,
-                fontSize: 20),
+                fontSize: 17),
             textScaler: TextScaler.linear(1),
           ),
           SizedBox(height: 10),
@@ -476,7 +460,7 @@ class _SavingmtPageState extends State<SavingmtPage> {
             style: TextStyle(
                 fontWeight: FontWeight.bold,
                 color: Colors.white,
-                fontSize: 20),
+                fontSize: 17),
             textScaler: TextScaler.linear(1),
           ),
         ],

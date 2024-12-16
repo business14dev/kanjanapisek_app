@@ -1,6 +1,6 @@
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
 xmlns:tools="http://schemas.android.com/tools" 
-    package="com.kanjanapisek.kanjanapisekgoldapp">
+    package="com.kanjanapisekkk.kanjanapisekkkapp">
 
     <uses-permission android:name="android.permission.INTERNET"/>
     <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE"/>
@@ -10,7 +10,7 @@ xmlns:tools="http://schemas.android.com/tools"
     <uses-permission android:name="android.permission.CALL_PHONE"/>
 
     <application
-        android:label="ห้างทองกาญจนาภิเษก"
+        android:label="Kanjapisek Gold"
         android:name="${applicationName}"
         android:icon="@mipmap/launcher_icon"
         android:enableOnBackInvokedCallback="true">

@@ -41,7 +41,7 @@ class _SettingPageState extends State<SettingPage> {
         action: 'android.settings.APP_NOTIFICATION_SETTINGS',
         arguments: {
           'android.provider.extra.APP_PACKAGE':
-              'com.maeprasertcgold.maeprasertgoldapp', // เปลี่ยนเป็น package name ของแอปคุณ
+              'com.kanjanapisekkk.kanjanapisekkkapp', // เปลี่ยนเป็น package name ของแอปคุณ
         },
       );
       await intent.launch();
@@ -61,7 +61,7 @@ class _SettingPageState extends State<SettingPage> {
     return Container(
       decoration: BoxDecoration(
         image: DecorationImage(
-          image: AssetImage("assets/images/bg-setting3.png"),
+          image: AssetImage("assets/images/bg-home2.png"),
           fit: BoxFit.cover,
         ),
       ),
@@ -83,6 +83,7 @@ class _SettingPageState extends State<SettingPage> {
                     SizedBox(height: 10),
                     _buildSetting(),
                     ..._buildLogInOut(context),
+                    SizedBox(height: 40),
                   ],
                 ),
               ),
@@ -99,7 +100,7 @@ class _SettingPageState extends State<SettingPage> {
         Divider(),
         ListTile(
           leading: Icon(Icons.notifications),
-          title: Text('การแจ้งเตือน', style: TextStyle(fontSize: 20), textScaler: TextScaler.linear(1)),
+          title: Text('การแจ้งเตือน', style: TextStyle(fontSize: 16), textScaler: TextScaler.linear(1)),
           trailing: Icon(Icons.arrow_forward_ios),
           onTap: () {
             openNotificationSettings();
@@ -107,7 +108,7 @@ class _SettingPageState extends State<SettingPage> {
         ),
         ListTile(
           leading: Icon(Icons.phone),
-          title: Text('ติดต่อเรา สาขา', style: TextStyle(fontSize: 20), textScaler: TextScaler.linear(1)),
+          title: Text('ติดต่อเรา สาขา', style: TextStyle(fontSize: 16), textScaler: TextScaler.linear(1)),
           trailing: Icon(Icons.arrow_forward_ios),
           onTap: () {
             // _makePhoneCall('043711056');
@@ -125,7 +126,7 @@ class _SettingPageState extends State<SettingPage> {
         // ),
         ListTile(
           leading: Icon(Icons.lock),
-          title: Text('นโยบายความเป็นส่วนตัว', style: TextStyle(fontSize: 20), textScaler: TextScaler.linear(1)),
+          title: Text('นโยบายความเป็นส่วนตัว', style: TextStyle(fontSize: 16), textScaler: TextScaler.linear(1)),
           trailing: Icon(Icons.arrow_forward_ios),
           onTap: () {
             _launchUrlPolicy();
@@ -133,7 +134,7 @@ class _SettingPageState extends State<SettingPage> {
         ),
         ListTile(
           leading: Icon(Icons.lock),
-          title: Text('ข้อตกลงและเงื่อนไข', style: TextStyle(fontSize: 20), textScaler: TextScaler.linear(1)),
+          title: Text('ข้อตกลงและเงื่อนไข', style: TextStyle(fontSize: 16), textScaler: TextScaler.linear(1)),
           trailing: Icon(Icons.arrow_forward_ios),
           onTap: () {
             _launchUrlTerm();
@@ -141,8 +142,8 @@ class _SettingPageState extends State<SettingPage> {
         ),
         ListTile(
           leading: Icon(Icons.info),
-          title: Text('เวอร์ชัน', style: TextStyle(fontSize: 20), textScaler: TextScaler.linear(1)),
-          trailing: Text(version, style: TextStyle(fontSize: 20), textScaler: TextScaler.linear(1)),
+          title: Text('เวอร์ชัน', style: TextStyle(fontSize: 16), textScaler: TextScaler.linear(1)),
+          trailing: Text(version, style: TextStyle(fontSize: 16), textScaler: TextScaler.linear(1)),
         ),
         Divider(),
       ],
@@ -182,13 +183,22 @@ class _SettingPageState extends State<SettingPage> {
       SizedBox(
         height: 10,
       ),
+      Text(
+        " สาขาของเรา",
+        style: TextStyle(
+          fontWeight: FontWeight.bold,
+          fontSize: 16,
+          color: AppConstant.PRIMARY_COLOR,
+        ),
+         textScaler: TextScaler.linear(1)
+      ),
       SizedBox(
         height: 5,
       ),
       Text(
         "  สาขา หน้าเมือง1 - ข้างตลาดสดบางลำภู",
         style: TextStyle(
-          fontSize: 18,
+          fontSize: 16,
           color: AppConstant.PRIMARY_COLOR,
         ),
          textScaler: TextScaler.linear(1)
@@ -199,7 +209,7 @@ class _SettingPageState extends State<SettingPage> {
       Text(
         "  สาขา หน้าเมือง2 - เยื้องแฟรี่พลาซ่า",
         style: TextStyle(
-          fontSize: 18,
+          fontSize: 16,
           color: AppConstant.PRIMARY_COLOR,
         ),
          textScaler: TextScaler.linear(1)
@@ -210,7 +220,7 @@ class _SettingPageState extends State<SettingPage> {
       Text(
         "  สาขา หนองเรือ",
         style: TextStyle(
-          fontSize: 18,
+          fontSize: 16,
           color: AppConstant.PRIMARY_COLOR,
         ),
       ),
@@ -220,16 +230,24 @@ class _SettingPageState extends State<SettingPage> {
       Text(
         "  สาขา ดอนโมง",
         style: TextStyle(
-          fontSize: 18,
+          fontSize: 16,
           color: AppConstant.PRIMARY_COLOR,
         ),
          textScaler: TextScaler.linear(1)
       ),
        SizedBox(
-        height: 5,
+        height: 10,
       ),
       Text(
-        "  เวลาเปิด - ปิด 08.00 - 17.00 น. หยุดทุกวันอาทิตย์",
+        " เวลาเปิด - ปิด 08.00 - 17.00 น.",
+        style: TextStyle(
+          fontSize: 16,
+          color: Colors.red,
+        ),
+         textScaler: TextScaler.linear(1)
+      ),
+      Text(
+        " หยุดทุกวันอาทิตย์",
         style: TextStyle(
           fontSize: 16,
           color: Colors.red,
