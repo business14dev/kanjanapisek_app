@@ -48,13 +48,13 @@ class _UploadSlipPagePageState extends State<UploadSlipPagePage> {
     String _mTitle = "${AppVariables.MobileAppPaymentBranchName}";
 
     if (_mTitle == "สำนักงานใหญ่") {
-      return "assets/images/promptpay-headoffice.jpg";
+      return "assets/images/newpromptpay_headoffice.jpg";
     } else if (_mTitle == "แฟรี่") {
-      return "assets/images/promptpay_fairy.jpg";
+      return "assets/images/newpromptpay_fairy.jpg";
     } else if (_mTitle == "หนองเรือ") {
-      return "assets/images/promptpay-nongrue.jpg";
+      return "assets/images/newpromptpay_nongrue.jpg";
     } else if (_mTitle == "ดอนโมง") {
-      return "assets/images/promptpay-donmong.jpg";
+      return "assets/images/newpromptpay_donmong.jpg";
     }
 
     print("_mTitle: $_mTitle"); // works

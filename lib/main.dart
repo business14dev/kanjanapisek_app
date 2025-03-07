@@ -1,5 +1,4 @@
 import 'package:flutter/foundation.dart';
-import 'package:kanjanapisek_app/src/utils/firebase_options.dart';
 import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
 import 'package:kanjanapisek_app/src/my_app.dart';
@@ -22,7 +21,7 @@ WidgetsFlutterBinding.ensureInitialized();
   } else {
     await Firebase.initializeApp();
   }
-  
+
    //Remove this method to stop OneSignal Debugging
   OneSignal.Debug.setLogLevel(OSLogLevel.verbose);
 
