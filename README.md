@@ -4,6 +4,9 @@ A new Flutter project.
 
 ## Getting Started
 
+IP Server : 203.150.144.125
+DB Name : GS2020KCNPS-090524
+
 This project is a starting point for a Flutter application.
 
 A few resources to get you started if this is your first Flutter project:

@@ -10,9 +10,9 @@ class AppConstant {
   static String URL_BSSCONFIGAPI =
       "https://apiconfigservice-b2drcpbnehb5fubc.southeastasia-01.azurewebsites.net/customerconfig/custapp/kanjanapisek";
 
-  static String OneSignalAppId = "d8c68732-1599-463c-af34-8192e039a95c";
+  static String OneSignalAppId = "5591d113-bd11-4655-8d39-fd5dff9f36e8";
   static String OneSignalRestkey =
-      "ZWMwYmQxNWQtMWNlNy00YWRmLWJkNTMtZDk3NjllM2Q3YmIy";
+      "os_v2_app_kwi5ce55cfdfldjz7vo77hzw5a6oytprb2eenim6wlotc77uyyp45qvjbsxr6o7f3v33mdggbo4xbiw5o5vxviphqpckhqxlh4rvm2q";
 
   // shared preferences
   static const String IS_LOGIN_PREF = "is_login";
@@ -72,24 +72,12 @@ class AppConstant {
   // static DateTime SelectDate = DateTime.now();
   // static TimeOfDay SelectTime = TimeOfDay.now();
 
-  static void handleClickNotification(BuildContext context) {
-    OneSignal.shared.setNotificationOpenedHandler(
-        (OSNotificationOpenedResult result) async {
-      try {
-        Navigator.of(context).push(
-            MaterialPageRoute(builder: (context) => MobileAppNotiSentPage()));
-      } catch (e, stacktrace) {
-        print(e);
-      }
-    });
-  }
-
   static void delPayerId(String Custtel) async {
     // ลบ payer id ลง sql
     try {
-      final status = await OneSignal.shared.getDeviceState();
-      final String? osUserID = status?.userId;
-      print("Payer Id : ${osUserID}");
+      var OnesignalId = await OneSignal.User.pushSubscription.id;
+
+      print("OnesignalId : ${OnesignalId}");
 
       Map<String, String> requestHeaders = {
         'Content-type': 'application/json',
@@ -98,7 +86,7 @@ class AppConstant {
       };
 
       final url =
-          '${AppVariables.API}/mobileappnoticonfig/deluser?custtel=${Custtel}&onesignaluserid=${osUserID}';
+          '${AppVariables.API}/mobileappnoticonfig/deluser?custtel=${Custtel}&onesignaluserid=${OnesignalId}';
       final response = await http.put(Uri.parse(url), headers: requestHeaders);
       print(url);
       if (response.statusCode == 204) {
@@ -114,9 +102,9 @@ class AppConstant {
   static void savePayerId(String Custtel) async {
     // เพิ่ม payer id ลง sql
     try {
-      final status = await OneSignal.shared.getDeviceState();
-      final String? osUserID = status?.userId;
-      print("Payer Id : ${osUserID}");
+      var OnesignalId = await OneSignal.User.pushSubscription.id;
+
+      print("OnesignalId : ${OnesignalId}");
 
       Map<String, String> requestHeaders = {
         'Content-type': 'application/json',
@@ -125,7 +113,7 @@ class AppConstant {
       };
 
       final url =
-          '${AppVariables.API}/mobileappnoticonfig/adduser?custtel=${Custtel}&onesignaluserid=${osUserID}';
+          '${AppVariables.API}/mobileappnoticonfig/adduser?custtel=${Custtel}&onesignaluserid=${OnesignalId}';
       final response = await http.put(Uri.parse(url), headers: requestHeaders);
       print(url);
       if (response.statusCode == 204) {

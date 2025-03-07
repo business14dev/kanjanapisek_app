@@ -46,9 +46,9 @@ dependencies:
   flutter_launcher_icons: ^0.14.1
   fluttertoast: ^8.2.8
   android_intent_plus: ^5.2.0
-  onesignal_flutter: ^3.5.0
+  onesignal_flutter: ^5.1.2
   badges: ^3.0.2
-  package_info_plus: ^4.0.0
+  package_info_plus: ^8.1.0
   gradient_borders: ^1.0.0
   bottom_navy_bar: ^6.1.0
 
