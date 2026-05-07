@@ -1,12 +1,14 @@
 import 'dart:io';
 
 import 'package:android_intent_plus/android_intent.dart';
+import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:kanjanapisek_app/src/pages/contact_page.dart';
 import 'package:kanjanapisek_app/src/pages/home_page.dart';
 import 'package:kanjanapisek_app/src/pages/loginscreen_page.dart';
 import 'package:kanjanapisek_app/src/utils/appconstants.dart';
 import 'package:kanjanapisek_app/src/utils/appvariables.dart';
+import 'package:kanjanapisek_app/src/utils/installwebapp.dart';
 import 'package:package_info_plus/package_info_plus.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 import 'package:url_launcher/url_launcher.dart';
@@ -113,7 +115,6 @@ class _SettingPageState extends State<SettingPage> {
           onTap: () {
             // _makePhoneCall('043711056');
             Navigator.push(context, MaterialPageRoute(builder: ((context) => ContactPage())));
-        
           },
         ),
         // ListTile(
@@ -140,14 +141,32 @@ class _SettingPageState extends State<SettingPage> {
             _launchUrlTerm();
           },
         ),
+        kIsWeb
+            ? ListTile(
+                leading: Icon(Icons.download_for_offline_outlined),
+                title: Text('ติดตั้งแอป', style: TextStyle(fontSize: 16), textScaleFactor: 1.0),
+                trailing: Icon(
+                  Icons.arrow_forward_ios,
+                  // size: 16,
+                  // color: AppConstant.SECONDARY_COLOR,
+                ),
+                onTap: () {
+                  _installPwa();
+                },
+              ) // ถ้าเป็นเว็บ ไม่แสดงปุ่มติดตั้ง PWA
+            : SizedBox.shrink(),
         ListTile(
-          leading: Icon(Icons.info),
-          title: Text('เวอร์ชัน', style: TextStyle(fontSize: 16), textScaler: TextScaler.linear(1)),
-          trailing: Text(version, style: TextStyle(fontSize: 16), textScaler: TextScaler.linear(1)),
+          leading: Icon(Icons.info_outlined),
+          title: Text('เวอร์ชัน', style: TextStyle(fontSize: 16), textScaleFactor: 1.0),
+          trailing: Text(kIsWeb ? "1.0.1" : version, style: TextStyle(fontSize: 16), textScaleFactor: 1.0),
         ),
         Divider(),
       ],
     );
+  }
+
+  Future<void> _installPwa() async {
+    await installPwa();
   }
 
   Container _buildLogo() {
@@ -170,50 +189,42 @@ class _SettingPageState extends State<SettingPage> {
 
   List<Widget> _buildComName() {
     return <Widget>[
-      Text(
-        "ห้างทองกาญจนาภิเษก ขอนแก่น",
-        style: TextStyle(
-          fontWeight: FontWeight.w700,
-          fontSize: 20,
-          //color: Colors.blueGrey[600],
-          color: AppConstant.PRIMARY_COLOR,
-        ),
-         textScaler: TextScaler.linear(1)
-      ),
+      Text("ห้างทองกาญจนาภิเษก ขอนแก่น",
+          style: TextStyle(
+            fontWeight: FontWeight.w700,
+            fontSize: 20,
+            //color: Colors.blueGrey[600],
+            color: AppConstant.PRIMARY_COLOR,
+          ),
+          textScaler: TextScaler.linear(1)),
       SizedBox(
         height: 10,
       ),
-      Text(
-        " สาขาของเรา",
-        style: TextStyle(
-          fontWeight: FontWeight.bold,
-          fontSize: 16,
-          color: AppConstant.PRIMARY_COLOR,
-        ),
-         textScaler: TextScaler.linear(1)
-      ),
+      Text(" สาขาของเรา",
+          style: TextStyle(
+            fontWeight: FontWeight.bold,
+            fontSize: 16,
+            color: AppConstant.PRIMARY_COLOR,
+          ),
+          textScaler: TextScaler.linear(1)),
       SizedBox(
         height: 5,
       ),
-      Text(
-        "  สาขา หน้าเมือง1 - ข้างตลาดสดบางลำภู",
-        style: TextStyle(
-          fontSize: 16,
-          color: AppConstant.PRIMARY_COLOR,
-        ),
-         textScaler: TextScaler.linear(1)
-      ),
+      Text("  สาขา หน้าเมือง1 - ข้างตลาดสดบางลำภู",
+          style: TextStyle(
+            fontSize: 16,
+            color: AppConstant.PRIMARY_COLOR,
+          ),
+          textScaler: TextScaler.linear(1)),
       SizedBox(
         height: 5,
       ),
-      Text(
-        "  สาขา หน้าเมือง2 - เยื้องแฟรี่พลาซ่า",
-        style: TextStyle(
-          fontSize: 16,
-          color: AppConstant.PRIMARY_COLOR,
-        ),
-         textScaler: TextScaler.linear(1)
-      ),
+      Text("  สาขา หน้าเมือง2 - เยื้องแฟรี่พลาซ่า",
+          style: TextStyle(
+            fontSize: 16,
+            color: AppConstant.PRIMARY_COLOR,
+          ),
+          textScaler: TextScaler.linear(1)),
       SizedBox(
         height: 5,
       ),
@@ -227,33 +238,27 @@ class _SettingPageState extends State<SettingPage> {
       SizedBox(
         height: 5,
       ),
-      Text(
-        "  สาขา ดอนโมง",
-        style: TextStyle(
-          fontSize: 16,
-          color: AppConstant.PRIMARY_COLOR,
-        ),
-         textScaler: TextScaler.linear(1)
-      ),
-       SizedBox(
+      Text("  สาขา ดอนโมง",
+          style: TextStyle(
+            fontSize: 16,
+            color: AppConstant.PRIMARY_COLOR,
+          ),
+          textScaler: TextScaler.linear(1)),
+      SizedBox(
         height: 10,
       ),
-      Text(
-        " เวลาเปิด - ปิด 08.00 - 17.00 น.",
-        style: TextStyle(
-          fontSize: 16,
-          color: Colors.red,
-        ),
-         textScaler: TextScaler.linear(1)
-      ),
-      Text(
-        " หยุดทุกวันอาทิตย์",
-        style: TextStyle(
-          fontSize: 16,
-          color: Colors.red,
-        ),
-         textScaler: TextScaler.linear(1)
-      ),
+      Text(" เวลาเปิด - ปิด 08.00 - 17.00 น.",
+          style: TextStyle(
+            fontSize: 16,
+            color: Colors.red,
+          ),
+          textScaler: TextScaler.linear(1)),
+      Text(" หยุดทุกวันอาทิตย์",
+          style: TextStyle(
+            fontSize: 16,
+            color: Colors.red,
+          ),
+          textScaler: TextScaler.linear(1)),
       SizedBox(
         height: 10,
       ),

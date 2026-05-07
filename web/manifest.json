@@ -1,11 +1,11 @@
 {
-    "name": "kanjanapisek_app",
-    "short_name": "kanjanapisek_app",
+    "name": "KJPGold",
+    "short_name": "KJPGold",
     "start_url": ".",
     "display": "standalone",
     "background_color": "#hexcode",
     "theme_color": "#hexcode",
-    "description": "A new Flutter project.",
+    "description": "KJPGold - Gold Shop Application",
     "orientation": "portrait-primary",
     "prefer_related_applications": false,
     "icons": [

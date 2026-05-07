@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html>
+
 <head>
   <!--
     If you are serving your web app in a path other than the root, change the
@@ -18,21 +19,111 @@
 
   <meta charset="UTF-8">
   <meta content="IE=Edge" http-equiv="X-UA-Compatible">
-  <meta name="description" content="A new Flutter project.">
+  <meta name="description" content="KJPGold - Gold Shop Application">
 
   <!-- iOS meta tags & icons -->
-  <meta name="apple-mobile-web-app-capable" content="yes">
+  <meta name="mobile-web-app-capable" content="yes">
   <meta name="apple-mobile-web-app-status-bar-style" content="black">
-  <meta name="apple-mobile-web-app-title" content="kanjanapisek_app">
+  <meta name="apple-mobile-web-app-title" content="KJPGold">
   <link rel="apple-touch-icon" href="icons/Icon-192.png">
 
   <!-- Favicon -->
   <link rel="icon" type="image/png" href="favicon.png"/>
 
-  <title>kanjanapisek_app</title>
+  <title>KJPGold</title>
   <link rel="manifest" href="manifest.json">
+
+  <!-- Add loading indicator -->
+  <style>
+    .loading {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      height: 100vh;
+      background-color: #ffffff;
+      flex-direction: column;
+    }
+    .spinner {
+      border: 4px solid #f3f3f3;
+      border-top: 4px solid #FFD700;
+      border-radius: 50%;
+      width: 50px;
+      height: 50px;
+      animation: spin 1s linear infinite;
+    }
+    @keyframes spin {
+      0% { transform: rotate(0deg); }
+      100% { transform: rotate(360deg); }
+    }
+    .loading-text {
+      margin-top: 20px;
+      font-family: 'Kanit', Arial, sans-serif;
+      color: #333;
+      font-size: 18px;
+    }
+    .loading-logo {
+      width: 80px;
+      height: 80px;
+      margin-bottom: 20px;
+    }
+  </style>
 </head>
+
 <body>
+  <!-- Loading indicator -->
+  <div id="loading" class="loading">
+    <!-- <img src="favicon.png" alt="Logo" class="loading-logo"> -->
+    <div class="spinner"></div>
+    <div class="loading-text">กำลังโหลด...</div>
+  </div>
+
+  <script>
+    // Hide loading when Flutter is ready
+    window.addEventListener('flutter-first-frame', function () {
+      const loading = document.querySelector('#loading');
+      if (loading) {
+        loading.style.display = 'none';
+      }
+    });
+
+    // Fallback: Hide loading after 10 seconds
+    setTimeout(function() {
+      const loading = document.querySelector('#loading');
+      if (loading) {
+        loading.style.display = 'none';
+      }
+    }, 10000);
+
+    // เก็บอีเวนต์ไว้เรียกทีหลัง
+    let deferredPrompt = null;
+
+    // แจ้ง Flutter/Dart ว่า "พร้อมติดตั้ง" แล้ว
+    const fire = (name) => window.dispatchEvent(new Event(name));
+
+    window.addEventListener('beforeinstallprompt', (e) => {
+      e.preventDefault();
+      deferredPrompt = e;
+      fire('a2hs-available'); // ให้แอปแสดงปุ่มได้
+    });
+
+    // ฟังก์ชันเรียกตอนกดปุ่มติดตั้ง
+    window.installPWA = async () => {
+      if (!deferredPrompt) return false;
+      deferredPrompt.prompt();
+      const { outcome } = await deferredPrompt.userChoice;
+      deferredPrompt = null;
+      if (outcome === 'accepted') fire('a2hs-installed');
+      return outcome === 'accepted';
+    };
+
+    // ติดตั้งสำเร็จ (เช่น จากเมนูเบราว์เซอร์)
+    window.addEventListener('appinstalled', () => {
+      deferredPrompt = null;
+      fire('a2hs-installed');
+    });
+  </script>
+  
   <script src="flutter_bootstrap.js" async></script>
 </body>
+
 </html>
